@@ -1,7 +1,7 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.micronaut.application") version "3.6.3"
-    id("io.micronaut.aot") version "3.6.3"
+    id("io.micronaut.application") version "4.2.1"
+    id("io.micronaut.aot") version "4.2.1"
 }
 
 version = "0.1"
@@ -15,7 +15,7 @@ ext {
     slf4j_version = '1.7.32'
     logback_version = '1.4.12'
     lombok_version = '1.18.30'
-    micronaut_version = '3.6.3'
+    micronaut_version = '4.2.1'
 }
 
 dependencies {
