@@ -80,3 +80,6 @@ causes the exception.
 
 The previous version of Micronaut didn't clear this cache, so the problem didn't occur.
 
+## Solution
+One solution is to keep the ScheduleReader running using a `Thread.currentThread().join();`
+but other solutions could be possible as well.

@@ -4,10 +4,12 @@ import java.time.LocalDateTime;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
 import io.micronaut.context.BeanContext;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Singleton
@@ -31,9 +33,16 @@ public class ScheduleReader implements Runnable {
    }
 
    @Override
+   @SneakyThrows
    public void run() {
       log.info("ScheduleReader initialized at " + lastInit);
       scheduler.schedule(this::runPlanner, 2000, TimeUnit.MILLISECONDS);
+
+      try {
+         Thread.currentThread().join();
+     } catch (InterruptedException e) {
+         Thread.currentThread().interrupt();
+     }
    }
 
    private void runPlanner() {
