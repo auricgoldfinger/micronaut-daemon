@@ -21,6 +21,9 @@ public class Application {
                     }
                 }
             }
+            log.warn("Application finishes before the first run of ScheduleReader!");
+            log.warn("ApplicationContext is now closed and all beans are destroyed!");
+            log.warn("This is the reason why no bean is found anymore...");
         }
     }
 }

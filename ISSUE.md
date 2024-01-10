@@ -69,3 +69,14 @@ The Micronaut guides are focused on launching applications with rest controllers
 What am I missing?
 
 _I asked this question on [stackoverflow](https://stackoverflow.com/questions/77764338/micronaut-injected-beancontext-cannot-retrieve-beans) without any success, so I'm trying here._
+
+## Reason for problem
+For some reason, with the upgrade of Micronaut, the autocloseable is called while the
+`ScheduledExecutorService` is still running.
+
+Because the `ApplicationContext` is closed, `DefaultBeanContext#stop()` is called which
+clears the `beanDefinitionClasses` cache. At that point, no bean is found anymore, which 
+causes the exception.
+
+The previous version of Micronaut didn't clear this cache, so the problem didn't occur.
+
